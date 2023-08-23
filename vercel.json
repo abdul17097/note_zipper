@@ -1,6 +1,10 @@
+
 {
-  "version": 2,
-  "name": "native-server",
-  "builds": [{ "src": "server.js", "use": "@vercel/node" }],
-  "routes": [{ "src": "/(.*)", "dest": "/server.js" }]
+  "buildCommand": "cd frontendnotezipper && npm install && npm run build",
+  "outputDirectory": "frontendnotezipper/build",
+  "framework": "react",
+  "rewrites": [
+    { "source": "/backendnotezipper/(.*)",
+    "destination": "/backendnotezipper/app.js" }
+  ]
 }
