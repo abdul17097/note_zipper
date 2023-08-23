@@ -27,3 +27,17 @@ export const registerValidationSchema = Yup.object({
         'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character'
       ),
   });
+
+  export const updateValidationSchema = Yup.object({
+    name: Yup.string(),
+    email: Yup.string().email('Invalid email'),
+    password: Yup.string()
+      .min(8, 'Password must be at least 8 characters')
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
+        'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character'
+      ),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('password'), null], 'Passwords must match'),
+    profilePicture: Yup.mixed(),
+  });

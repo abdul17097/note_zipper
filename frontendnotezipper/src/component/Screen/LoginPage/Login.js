@@ -10,8 +10,7 @@ import {NavLink, useNavigate}   from 'react-router-dom';
 export const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
-;    const user = useSelector((state)=> state.userLogin)
-    const { userInfo } = user;
+    const user = useSelector((state)=> state.userLogin)
     
   const initialValues = {
     email: '',
@@ -21,9 +20,10 @@ export const Login = () => {
 
   const onSubmit = (values) => {
     dispatch(userLogin(values.email, values.password));
-    const user = localStorage.getItem('token');
-    if(user){
+    if(user.success === true) {
+      setTimeout(() =>{
         navigate('/mynote')
+      },1000);
     }else{
       navigate('/login');
     }
@@ -31,9 +31,8 @@ export const Login = () => {
 
   return (
     <div className="flex items-center justify-center h-screen">
-    <ToastContainer/>
-      <div className="w-full max-w-xs">
-        <h1 className="text-3xl font-semibold mb-4">Login</h1>
+      <div className="w-full max-w-lg">
+        <h1 className="text-3xl font-thin text-center mb-4">Login</h1>
         <Formik
           initialValues={initialValues}
           validationSchema={loginValidationSchema}

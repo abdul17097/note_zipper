@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const generteToken = require('../utils/generateTokes');
 const registerUser = async (req,res)=>{
     const {name, email, password, confirmPassword, imageUrl}  = req.body;
-    console.log(req.body);
     const userExit = await User.findOne({email});
     try {
         if(userExit){
@@ -56,4 +55,33 @@ const loginUser = async (req, res)=>{
     }
 }
 
-module.exports = {registerUser, loginUser};
+const updateUser = async (req, res)=>{
+    const user = await User.findOne({_id:req.userId});
+    const {name, email, password, confirmPassword, imageUrl}  = req.body;
+    try {
+        if(user){
+            user.name = name || user.name;
+            user.email = email || user.email;
+            user.password = password || user.password;
+            user.confirmPassword = confirmPassword || user.confirmPassword
+            user.imageUrl = imageUrl || user.imageUrl
+    
+            const updatedUser = await user.save();
+            res.json({
+                _id: updatedUser._id,
+                name: updatedUser.name,
+                email: updatedUser.email,
+                imageUrl: updatedUser.imageUrl,
+                token: generteToken(user._id)
+            });
+        }else{
+            res.status(401).json({success: false});
+        }
+    } catch (error) {
+        res.status(401).json({success: false});
+    }
+    
+}
+
+
+module.exports = {registerUser, loginUser, updateUser};

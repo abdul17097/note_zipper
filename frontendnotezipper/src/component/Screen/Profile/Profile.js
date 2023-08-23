@@ -1,22 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { registerValidationSchema } from '../../../util/validation';
+import { updateValidationSchema } from '../../../util/validation';
 import {useSelector, useDispatch } from 'react-redux';
-import { userRegister } from '../../../actions/userAction';
+import { userRegister, userUpdate } from '../../../actions/userAction';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {NavLink}   from 'react-router-dom';
+import {NavLink , useNavigate}   from 'react-router-dom';
 
-export const Register = () => {
+export const Profile = () => {
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.user);
-  const initialValues = {
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    profilePicture: null,
-  };
+    const user = useSelector((state) => state.userLogin);
+    const navigate = useNavigate();
+
+    const initialValues = {
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        profilePicture: '',
+      };
+    useEffect(()=>{
+        if(!user.userInfo){
+            navigate('/');
+        }else{
+          initialValues.name = user.userInfo.name;
+          initialValues.email = user.userInfo.email;
+        }
+    },[])
+  
 
 
   const onSubmit = async (values) => {
@@ -26,7 +37,7 @@ export const Register = () => {
     if (values.profilePicture) {
         const formData = new FormData();
         formData.append('file', values.profilePicture);
-        formData.append('upload_preset', `${process.env.REACT_APP_UPLOAD_PRECET}`); // Create this in Cloudinary
+        formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRECET); // Create this in Cloudinary
   
         const response = await fetch(
           `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
@@ -40,17 +51,18 @@ export const Register = () => {
         imageUrl = data.secure_url;
         console.log(imageUrl);
         }
-    dispatch(userRegister(name, email, password, confirmPassword, imageUrl));
+    dispatch(userUpdate(name, email, password, confirmPassword, imageUrl));
   };
-
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex flex-col justify-center mt-4 ">
     <ToastContainer />
-      <div className="w-full max-w-lg ">
-        <h1 className="text-3xl font-thin text-center mt-5 mb-4">Registration</h1>
+    <h1 className="text-4xl font-thin mb-4 text-center">Edit Profile</h1>
+    <hr className='mx-10 mb-10'/>
+    <div className='flex justify-around h-screen'>
+      <div className="w-full max-w-[50%] ">
         <Formik
-          initialValues={initialValues}
-          validationSchema={registerValidationSchema}
+          initialValues={   initialValues}
+          validationSchema={updateValidationSchema}
           onSubmit={onSubmit}
         >
           {(formik) => (
@@ -127,13 +139,16 @@ export const Register = () => {
                 type="submit"
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
-                Register
+                Update
               </button>
-                  <p className='mt-3'>Already Register? <NavLink className='text-underline' to = '/login'>login</NavLink></p>
             </Form>
           )}
         </Formik>
       </div>
+      <div className='w-[35%] h-[85vh] border  rounded-md'>
+        <img src={user.userInfo.imageUrl} className='w-[100%] rounded-md h-[100%]' alt='asdfa'/>
+      </div>
+    </div>
     </div>
   );
 };
