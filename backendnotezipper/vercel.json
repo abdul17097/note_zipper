@@ -1,7 +1,7 @@
 
 {
   "buildCommand": "cd frontendnotezipper && npm install && npm run build",
-  "outputDirectory": "frontendnotezipper/build",
+  "outputDirectory": "/frontendnotezipper/build",
   "framework": "react",
   "rewrites": [
     { "source": "/backendnotezipper/(.*)",
