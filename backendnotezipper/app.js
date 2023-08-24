@@ -16,7 +16,9 @@ app.use(errrorHandler)
 
 app.use('/api/users', userRoutes)
 app.use('/api/notes', noteRoutes)
-
+app.get('/', (req,res)=>{
+    res.json({success:true});
+})
 
 app.listen(process.env.PORT,()=>{
     console.log(`Server is running on ${process.env.PORT}`);
