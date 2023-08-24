@@ -1,10 +1,15 @@
-
 {
-  "buildCommand": "cd frontendnotezipper && npm install && npm run build",
-  "outputDirectory": "/frontendnotezipper/build",
-  "framework": "react",
-  "rewrites": [
-    { "source": "/backendnotezipper/(.*)",
-    "destination": "/backendnotezipper/app.js" }
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "app.js"
+    }
   ]
 }
