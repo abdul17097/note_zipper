@@ -7,7 +7,7 @@ export const userLogin = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
     const { data } = await axios.post(
-      "https://note-zipper-zeta.vercel.app/api/users/login",
+      "/api/users/login",
       {
         email,
         password,
@@ -30,7 +30,7 @@ export const userRegister = (name, email, password, confirmPassword, imageUrl ) 
   try {
     dispatch({ type: USER_REGISTER_REQUEST});
     const { data } = await axios.post(
-      "https://note-zipper-zeta.vercel.app/api/users/register",
+      "/api/users/register",
       {
         name,
         email,
