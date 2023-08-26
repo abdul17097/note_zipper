@@ -7,7 +7,7 @@ export const userLogin = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
     const { data } = await axios.post(
-      "/api/users/login",
+      "https://note-zipper-mern-nine.vercel.app/api/users/login",
       {
         email,
         password,
