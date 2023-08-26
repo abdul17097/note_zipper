@@ -14,7 +14,7 @@ const allowedOrigins = ['https://note-zipper-mern-nine.vercel.app/'];
 
 app.use(cors({
   origin: ['https://note-zipper-mern-nine.vercel.app/'],
-  methods: ['GET', 'POST', 'DELETE', 'PUT'],
+  methods: ['GET', 'POST'],
   credentials: true,
   preflightContinue: false
 }));
