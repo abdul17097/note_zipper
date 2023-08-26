@@ -12,7 +12,7 @@ export const userLogin = (email, password) => async (dispatch) => {
         email,
         password,
       },
-      { headers: { "Content-Type": "application/json" } }
+      { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": true } }
     );
   localStorage.setItem("token", JSON.stringify(data));
     toast.success("Login Success");
