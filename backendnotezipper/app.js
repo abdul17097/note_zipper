@@ -13,7 +13,9 @@ connectDB();
 const allowedOrigins = ['https://note-zipper-mern-nine.vercel.app/'];
 
 app.use(cors({
-  origin: allowedOrigins
+  origin: ['https://note-zipper-mern-nine.vercel.app/'],
+  methods: ['GET', 'POST', 'DELETE', 'PUT'],
+  credentials: true
 }));
 app.use(express.json())
 
