@@ -26,7 +26,7 @@ useEffect(()=>{
         <hr/>
         <NavLink to='/createNotes' className='border p-1 flex w-40 justify-center items-center text-xl rounded-md'>Create Note</NavLink>
         {
-          notes && notes?.notes.reverse().map((note)=>{
+          notes?.notes.reverse().map((note)=>{
             return <Note key={note.id} note={note}/>
           })
         }
