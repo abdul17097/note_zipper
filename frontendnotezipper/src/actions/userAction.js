@@ -12,7 +12,7 @@ export const userLogin = (email, password) => async (dispatch) => {
         email,
         password,
       },
-      { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": true } }
+      { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": '*' } }
     );
   localStorage.setItem("token", JSON.stringify(data));
     toast.success("Login Success");
@@ -38,7 +38,7 @@ export const userRegister = (name, email, password, confirmPassword, imageUrl ) 
         confirmPassword,
         imageUrl: imageUrl
       },
-      { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": true } }
+      { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } }
     );
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data});
     localStorage.setItem("token", JSON.stringify(data));
