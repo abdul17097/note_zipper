@@ -6,14 +6,13 @@ import 'react-toastify/dist/ReactToastify.css';
 export const userLogin = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
-    axios.defaults.withCredentials = true
     const { data } = await axios.post(
       "https://note-zipper-zeta.vercel.app/api/users/login",
       {
         email,
         password,
       },
-      { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": '*' } }
+      { headers: { "Content-Type": "application/json" } }
     );
   localStorage.setItem("token", JSON.stringify(data));
     toast.success("Login Success");
@@ -30,7 +29,6 @@ export const userLogin = (email, password) => async (dispatch) => {
 export const userRegister = (name, email, password, confirmPassword, imageUrl ) => async (dispatch) => {
   try {
     dispatch({ type: USER_REGISTER_REQUEST});
-    axios.defaults.withCredentials = true
     const { data } = await axios.post(
       "https://note-zipper-zeta.vercel.app/api/users/register",
       {
@@ -40,7 +38,7 @@ export const userRegister = (name, email, password, confirmPassword, imageUrl ) 
         confirmPassword,
         imageUrl: imageUrl
       },
-      { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } }
+      { headers: { "Content-Type": "application/json" } }
     );
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data});
     localStorage.setItem("token", JSON.stringify(data));
