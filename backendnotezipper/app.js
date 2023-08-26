@@ -9,6 +9,9 @@ const app = express();
 dotenv.config();
 connectDB();
 
+// Replace 'http://your-react-app-domain.com' with your actual React app's domain
+const allowedOrigins = ['https://note-zipper-mern-nine.vercel.app/'];
+
 app.use(cors({
   origin: ['https://note-zipper-mern-nine.vercel.app'],
   methods: ['GET', 'POST'],
