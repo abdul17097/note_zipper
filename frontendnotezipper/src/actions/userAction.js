@@ -7,13 +7,12 @@ export const userLogin = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
     const { data } = await axios.post(
-      "https://note-zipper-zeta.vercel.app/api/users/login",
+      "/api/users/login",
       {
         email,
         password,
       },
-      { headers: { "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "https://note-zipper-mern-nine.vercel.app" }}
+      { headers: { "Content-Type": "application/json" } }
     );
   localStorage.setItem("token", JSON.stringify(data));
     toast.success("Login Success");
@@ -31,7 +30,7 @@ export const userRegister = (name, email, password, confirmPassword, imageUrl ) 
   try {
     dispatch({ type: USER_REGISTER_REQUEST});
     const { data } = await axios.post(
-      "https://note-zipper-zeta.vercel.app/api/users/register",
+      "/api/users/register",
       {
         name,
         email,
