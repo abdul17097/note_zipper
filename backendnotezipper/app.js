@@ -11,7 +11,7 @@ connectDB();
 
 app.use(cors({
   origin: ['https://note-zipper-mern-nine.vercel.app'],
-  methods: ['GET', 'POST', 'PUT','DELETE'],
+  methods: ['GET', 'POST'],
   credentials: true,
   preflightContinue: false
 }));
