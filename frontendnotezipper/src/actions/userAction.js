@@ -30,7 +30,7 @@ export const userRegister = (name, email, password, confirmPassword, imageUrl ) 
   try {
     dispatch({ type: USER_REGISTER_REQUEST});
     const { data } = await axios.post(
-      "/api/users/register",
+      "https://note-zipper-mern-nine.vercel.app/api/users/register",
       {
         name,
         email,
