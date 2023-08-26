@@ -38,7 +38,7 @@ export const userRegister = (name, email, password, confirmPassword, imageUrl ) 
         confirmPassword,
         imageUrl: imageUrl
       },
-      { headers: { "Content-Type": "application/json" } }
+      { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": true } }
     );
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data});
     localStorage.setItem("token", JSON.stringify(data));
