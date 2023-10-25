@@ -13,7 +13,7 @@ connectDB();
 const allowedOrigins = ['https://note-zipper-mern-nine.vercel.app/'];
 
 app.use(cors({
-  origin: ['https://note-zipper-mern-nine.vercel.app'],
+  origin: ['https://note-zipper-mern-ob84cqc6c-abdul17097.vercel.app/'],
   methods: ['GET', 'POST'],
   credentials: true,
   preflightContinue: false
