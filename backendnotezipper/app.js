@@ -12,12 +12,22 @@ connectDB();
 // Replace 'http://your-react-app-domain.com' with your actual React app's domain
 const allowedOrigins = ['https://note-zipper-mern-nine.vercel.app/'];
 
-app.use(cors({
-  origin: ['https://note-zipper-mern-ob84cqc6c-abdul17097.vercel.app/'],
-  methods: ['GET', 'POST'],
-  credentials: true,
-  preflightContinue: false
-}));
+// app.use(cors({
+//   origin: ['https://note-zipper-mern-ob84cqc6c-abdul17097.vercel.app/'],
+//   methods: ['GET', 'POST'],
+//   credentials: true,
+//   preflightContinue: false
+// }));
+const corsOptions = {
+  origin: 'https://note-zipper-mern-ob84cqc6c-abdul17097.vercel.app/', // Replace with your frontend's domain
+  methods: 'GET,PUT,POST,DELETE',
+  allowedHeaders: 'Content-Type,Authorization',
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.json())
 
 app.use(notFound);
