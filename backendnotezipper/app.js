@@ -18,7 +18,7 @@ const allowedOrigins = ['https://note-zipper-mern-nine.vercel.app/'];
 //   credentials: true,
 //   preflightContinue: false
 // }));
-const corsOptions = {origin: 'https://note-zipper-mern-theta.vercel.app/'};
+const corsOptions = {origin: 'https://note-zipper-mern-theta.vercel.app/', methods: ['GET', 'POST'], };
 
 app.use(cors(corsOptions));
 
