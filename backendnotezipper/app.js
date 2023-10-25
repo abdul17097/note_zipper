@@ -19,7 +19,7 @@ const allowedOrigins = ['https://note-zipper-mern-nine.vercel.app/'];
 //   preflightContinue: false
 // }));
 const corsOptions = {
-  origin: 'https://note-zipper-mern-ob84cqc6c-abdul17097.vercel.app/', // Replace with your frontend's domain
+  origin: 'https://note-zipper-mern-theta.vercel.app/', // Replace with your frontend's domain
   methods: 'GET,PUT,POST,DELETE',
   allowedHeaders: 'Content-Type,Authorization',
   preflightContinue: false,
